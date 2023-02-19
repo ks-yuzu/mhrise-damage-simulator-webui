@@ -23,30 +23,25 @@
 
   export let style = ''
 
-  export let enhancement: Enhancement
-  export let value:       Enhancement | null
+  export let enhancement: Readonly<Enhancement>
+  export let value:       Readonly<Enhancement> | null
 
-  export let isChecked: boolean = !!value
-  $: value = isChecked ? enhancement : null
+  function toggle() {
+    value = (value == null) ? enhancement : null
+    return false
+  }
 </script>
 
 
-<Button color={isChecked ? undefined : "secondary"}
-        on:click={() => {isChecked = !isChecked}}
-        {style}
+<Button on:click={toggle}
+        style={[
+          value ? '' : 'color: rgba(255,255,255,0.6);',
+          'background-color: #2a2a2e',
+          'padding: 1rem',
+          'margin: 0.2rem',
+          style,
+        ].join(';')}
         >
   <Label>{enhancement.metadata.name}</Label>
 </Button>
 
-
-<style>
-  :global(.mdc-button:not(:disabled)) {
-    background-color: #2a2a2e !important;
-    padding: 1rem;
-    margin: 0.2rem;
-  }
-
-  :global(.mdc-button.smui-button--color-secondary:not(:disabled)) {
-    color: rgba(255,255,255,0.6);
-  }
-</style>

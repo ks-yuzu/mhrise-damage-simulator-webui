@@ -30,7 +30,6 @@
       <EnhancementCheckbox style={getCheckboxStyle(e[0])}
                            enhancement={e[0]}
                            bind:value={value[i]}
-                           isChecked={!!value[i]}
                            />
     {:else}
       <EnhancementSelector style={getSelectorStyle(e)}
