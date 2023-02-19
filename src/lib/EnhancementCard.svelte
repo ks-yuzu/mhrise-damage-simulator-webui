@@ -5,7 +5,7 @@
   import EnhancementCheckbox from '$lib/EnhancementCheckbox.svelte'
 
   export let category:     string
-  export let enhancements: Enhancement[][] | undefined
+  export let enhancements: Readonly<Enhancement[][]> | undefined
   export let value:        (Enhancement | null)[]
 
   export let style:         string                                         = ''
@@ -24,7 +24,7 @@
   }
 </script>
 
-<Card class="card--{category}" style={style}>
+<Card class="enhancement-card enhancement-card--{category}" style={style}>
   {#each enhancements ?? [] as e, i}
     {#if e.length === 1 && e[0].metadata.level === '0'}
       <EnhancementCheckbox style={getCheckboxStyle(e[0])}
@@ -41,13 +41,13 @@
 </Card>
 
 <style>
-  :global(.mdc-card) {
+  :global(.enhancement-card) {
     display:        flex !important;
     flex-wrap:      wrap;
     flex-direction: row;
     align-items:    center;
   }
-  :global(.mdc-card > .mdc-select) {
+  :global(.enhancement-card > .mdc-select) {
     margin: 0.2rem;
   }
 </style>
