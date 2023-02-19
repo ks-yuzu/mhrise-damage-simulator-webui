@@ -7,3 +7,7 @@ export const WEAPON_TYPES:             WeaponType[] = ['大剣', '太刀', '片�
 export const BLADEMASTER_WEAPON_TYPES: WeaponType[] = ['大剣', '太刀', '片手剣', '双剣', 'ハンマー', '狩猟笛', 'ランス', 'ガンランス', 'スラッシュアックス', 'チャージアックス', '操虫棍']
 export const GUNNER_WEAPON_TYPES:      WeaponType[] = ['ライトボウガン', 'ヘヒィボウガン', '弓']
 
+
+export function isBlademaster(weaponType: WeaponType) {
+  return BLADEMASTER_WEAPON_TYPES.includes(weaponType)
+}
